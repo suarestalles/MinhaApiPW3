@@ -25,4 +25,11 @@ public class ContaController {
 
         return ResponseEntity.ok(contas);
     }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ResponseEntity<Conta> save(Conta conta) {
+        Conta contaSalva = service.save(conta);
+
+        return ResponseEntity.ok(contaSalva);
+    }
 }

@@ -20,4 +20,7 @@ public class ContaService {
         return repository.findAll();
     }
 
+    public Conta save(Conta conta) {
+        return repository.save(conta);
+    }
 }

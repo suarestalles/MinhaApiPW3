@@ -1,12 +1,17 @@
 package com.example.pw3.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Categoria {
-    @Id
-    private long id;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Categoria extends AbstractEntity {
 
     private String nome;
 }
