@@ -3,6 +3,7 @@ package com.example.pw3.controllers;
 import java.util.Collection;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ContaController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Conta> save(Conta conta) {
+    public ResponseEntity<Conta> save(@RequestBody Conta conta) {
         Conta contaSalva = service.save(conta);
 
         return ResponseEntity.ok(contaSalva);
