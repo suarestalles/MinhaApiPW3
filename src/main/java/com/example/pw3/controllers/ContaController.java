@@ -33,4 +33,19 @@ public class ContaController {
 
         return ResponseEntity.ok(contaSalva);
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public ResponseEntity<Conta> delete(@RequestBody Long id) {
+        Conta conta = service.findById(id);
+        service.delete(conta);
+
+        return ResponseEntity.ok(conta);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity<Conta> updateById(@RequestBody Long id) {
+        Conta conta = service.updateById(id);
+
+        return ResponseEntity.ok(conta);
+    }
 }

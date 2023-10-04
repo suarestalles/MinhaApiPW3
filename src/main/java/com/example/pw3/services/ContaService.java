@@ -20,7 +20,21 @@ public class ContaService {
         return repository.findAll();
     }
 
+    public Conta findById(Long id) {
+        Conta conta = repository.findById(id).orElseThrow(() -> new RuntimeException("Conta não encontrada!"));
+        return conta;
+    }
+
     public Conta save(Conta conta) {
         return repository.save(conta);
+    }
+
+    public void delete(Conta conta) {
+        repository.deleteById(conta.getId());
+    }
+
+    public Conta updateById(Long id) {
+        Conta contaAtualizada = repository.findById(id).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        return repository.save(contaAtualizada);
     }
 }

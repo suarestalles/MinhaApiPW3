@@ -20,7 +20,23 @@ public class CategoriaService {
         return repository.findAll();
     }
 
+    public Categoria findById(Long id) {
+        Categoria categoria = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+        return categoria;
+    }
+
     public Categoria save(Categoria categoria) {
         return repository.save(categoria);
+    }
+
+    public void delete(Categoria categoria) {
+        repository.deleteById(categoria.getId());
+    }
+
+    public Categoria updateById(Long id) {
+        Categoria categoriaAtualizada = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+        return repository.save(categoriaAtualizada);
     }
 }
