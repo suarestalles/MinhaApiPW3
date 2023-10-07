@@ -1,0 +1,29 @@
+GET http://localhost:8080/categoria/all
+
+###
+
+POST http://localhost:8080/categoria/save
+Content-Type: application/json
+
+{
+    "id": null,
+    "nome": ""
+}
+
+###
+
+DELETE http://localhost:8080/categoria/delete?id=
+
+###
+
+GET http://localhost:8080/categoria/findById?id=
+
+###
+
+PUT http://localhost:8080/categoria/update
+Content-Type: application/json
+
+{
+    "id": ,
+    "nome": ""
+}

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pw3.models.Categoria;
@@ -27,6 +28,13 @@ public class CategoriaController {
         return ResponseEntity.ok(categorias);
     }
 
+    @RequestMapping(value = "/findById", method = RequestMethod.GET)
+    public ResponseEntity<Categoria> findById(Long id) {
+        Categoria categoria = service.findById(id);
+
+        return ResponseEntity.ok(categoria);
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
         Categoria categoriaSalva = service.save(categoria);
@@ -35,18 +43,17 @@ public class CategoriaController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<Categoria> delete(@RequestBody Long id) {
+    public ResponseEntity<Categoria> delete(@RequestParam Long id) {
         Categoria categoria = service.findById(id);
-        service.delete(categoria);
+        service.delete(categoria.getId());
 
         return ResponseEntity.ok(categoria);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Categoria> updateById(@RequestBody Long id) {
-        Categoria categoria = service.updateById(id);
+    public ResponseEntity<Categoria> updateById(@RequestBody Categoria categoria) {
+        Categoria categoriaAtualizada = service.updateById(categoria);
 
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok(categoriaAtualizada);
     }
-
 }

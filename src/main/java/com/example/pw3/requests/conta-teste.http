@@ -1,0 +1,36 @@
+GET http://localhost:8080/conta/all
+
+###
+
+POST http://localhost:8080/conta/save
+Content-Type: application/json
+
+{
+    "categoria": {
+        "id": ,
+        "nome": ""
+    },
+    "tipo": ,
+    "data": "",
+    "descricao": "",
+    "valor": ,
+    "destinoOrigem": "",
+    "status": 
+}
+
+###
+
+DELETE http://localhost:8080/conta/delete?id=
+
+###
+
+GET http://localhost:8080/conta/findById?id=
+
+###
+
+PUT http://localhost:8080/conta/update
+Content-Type: application/json
+
+{
+    
+}

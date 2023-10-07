@@ -27,6 +27,13 @@ public class ContaController {
         return ResponseEntity.ok(contas);
     }
 
+    @RequestMapping(value = "/findById", method = RequestMethod.GET)
+    public ResponseEntity<Conta> findById(Long id) {
+        Conta conta = service.findById(id);
+
+        return ResponseEntity.ok(conta);
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Conta> save(@RequestBody Conta conta) {
         Conta contaSalva = service.save(conta);
@@ -43,9 +50,9 @@ public class ContaController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Conta> updateById(@RequestBody Long id) {
-        Conta conta = service.updateById(id);
+    public ResponseEntity<Conta> updateById(@RequestBody Conta conta) {
+        Conta contaAtualizada = service.updateById(conta);
 
-        return ResponseEntity.ok(conta);
+        return ResponseEntity.ok(contaAtualizada);
     }
 }

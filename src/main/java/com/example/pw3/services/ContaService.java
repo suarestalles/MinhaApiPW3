@@ -33,8 +33,10 @@ public class ContaService {
         repository.deleteById(conta.getId());
     }
 
-    public Conta updateById(Long id) {
-        Conta contaAtualizada = repository.findById(id).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+    public Conta updateById(Conta conta) {
+        Conta contaAtualizada = repository.findById(conta.getId())
+                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        contaAtualizada = conta;
         return repository.save(contaAtualizada);
     }
 }

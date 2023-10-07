@@ -30,13 +30,14 @@ public class CategoriaService {
         return repository.save(categoria);
     }
 
-    public void delete(Categoria categoria) {
-        repository.deleteById(categoria.getId());
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 
-    public Categoria updateById(Long id) {
-        Categoria categoriaAtualizada = repository.findById(id)
+    public Categoria updateById(Categoria categoria) {
+        Categoria categoriaAtualizada = repository.findById(categoria.getId())
                 .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+        categoriaAtualizada = categoria;
         return repository.save(categoriaAtualizada);
     }
 }
