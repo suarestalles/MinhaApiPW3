@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pw3.models.Categoria;
@@ -43,16 +42,15 @@ public class CategoriaController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<Categoria> delete(@RequestParam Long id) {
-        Categoria categoria = service.findById(id);
-        service.delete(categoria.getId());
+    public ResponseEntity<Categoria> delete(@RequestBody Categoria categoria) {
+        service.delete(categoria);
 
         return ResponseEntity.ok(categoria);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Categoria> updateById(@RequestBody Categoria categoria) {
-        Categoria categoriaAtualizada = service.updateById(categoria);
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity<Categoria> update(@RequestBody Categoria categoria) {
+        Categoria categoriaAtualizada = service.update(categoria);
 
         return ResponseEntity.ok(categoriaAtualizada);
     }
