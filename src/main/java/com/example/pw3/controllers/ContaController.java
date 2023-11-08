@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pw3.dto.ResumoDTO;
 import com.example.pw3.models.Conta;
 import com.example.pw3.services.ContaService;
 
@@ -56,4 +57,18 @@ public class ContaController {
 
         return ResponseEntity.ok(contaAtualizada);
     }
+
+    @RequestMapping(value = "/resumo", method = RequestMethod.GET)
+    public ResponseEntity<ResumoDTO> resumo(Long id) {
+        ResumoDTO resumo = service.resumo();
+
+        return ResponseEntity.ok(resumo);
+    }
+
+    // @RequestMapping(value = "/save", method = RequestMethod.POST)
+    // public ResponseEntity<Conta> save(@RequestBody Conta conta) {
+    //     Conta contaSalva = service.save(conta);
+
+    //     return ResponseEntity.ok(contaSalva);
+    // }
 }

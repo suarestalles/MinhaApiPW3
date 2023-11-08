@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
+import com.example.pw3.dto.ResumoDTO;
 import com.example.pw3.models.Conta;
 import com.example.pw3.repositories.ContaRepository;
 
@@ -38,5 +39,22 @@ public class ContaService {
                 .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
         contaAtualizada = conta;
         return repository.save(contaAtualizada);
+    }
+
+    public ResumoDTO resumo() {
+        Collection<Conta> despesas = repository.findByTipo(Conta.TIPO_DESPESA);
+        Collection<Conta> receitas = repository.findByTipo(Conta.TIPO_RECEITA);
+
+        double totalDespesa = despesas.stream().mapToDouble(d -> d.getValor()).sum();
+        double totalReceita = receitas.stream().mapToDouble(r -> r.getValor()).sum();
+        double totalSaldo = totalReceita - totalDespesa;
+
+        ResumoDTO resumo = new ResumoDTO();
+        
+        resumo.setTotalDespesa(totalDespesa);
+        resumo.setTotalReceita(totalReceita);
+        resumo.setSaldo(totalSaldo);
+
+        return resumo;
     }
 }
