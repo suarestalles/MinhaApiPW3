@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pw3.dto.ResumoDTO;
@@ -44,8 +43,7 @@ public class ContaController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<Conta> delete(@RequestParam Long id) {
-        Conta conta = service.findById(id);
+    public ResponseEntity<Conta> delete(@RequestBody Conta conta) {
         service.delete(conta);
 
         return ResponseEntity.ok(conta);
@@ -64,11 +62,4 @@ public class ContaController {
 
         return ResponseEntity.ok(resumo);
     }
-
-    // @RequestMapping(value = "/save", method = RequestMethod.POST)
-    // public ResponseEntity<Conta> save(@RequestBody Conta conta) {
-    //     Conta contaSalva = service.save(conta);
-
-    //     return ResponseEntity.ok(contaSalva);
-    // }
 }

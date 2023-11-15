@@ -31,7 +31,7 @@ public class ContaService {
     }
 
     public void delete(Conta conta) {
-        repository.deleteById(conta.getId());
+        repository.delete(conta);
     }
 
     public Conta updateById(Conta conta) {
